@@ -1880,7 +1880,7 @@ const mediaRoutes = {
 // Cheap next to what it proves, and it is the same directory every real write goes to.
 // One probe per window, not one per request: this route is unauthenticated, so a create and an
 // unlink on every call is a disk write anyone who can reach the port may ask for as fast as they
-// like. The container polls every five minutes (api/Dockerfile), so a five-second window is free
+// like. The container polls every 30 seconds (api/Dockerfile), so a five-second window is free
 // to the check that matters and caps a flood at one probe per five seconds. The cost is that a
 // poll can be up to five seconds stale — a mount that went read-only a second ago still reads
 // healthy, and the poll after that does not.
