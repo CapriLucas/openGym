@@ -1,5 +1,5 @@
 /* ============================================================================
-   openGym — design system
+   Capri Gym — design system
    ----------------------------------------------------------------------------
    Rebuilt around four rules, each aimed at a specific "generated" tell in the
    previous sheet:
@@ -19,11 +19,11 @@
 /* ---------------------------------------------------------------- tokens -- */
 :root {
   /* surfaces — dark is the default */
-  --bg:        #000000;
-  --bg-el:     #0e0e10;   /* elevated backdrop (sheets, bars) */
-  --surface:   #1c1c1e;   /* card / grouped-list fill */
-  --surface-2: #2c2c2e;   /* pressed + nested fill */
-  --surface-3: #3a3a3c;   /* controls (segmented track, switch off) */
+  --bg:        #05090d;
+  --bg-el:     #09121a;   /* elevated backdrop (sheets, bars) */
+  --surface:   #101b25;   /* card / grouped-list fill */
+  --surface-2: #192938;   /* pressed + nested fill */
+  --surface-3: #263b4d;   /* controls (segmented track, switch off) */
 
   /* text */
   --label:     #ffffff;
@@ -32,8 +32,8 @@
   --label-4:   rgba(235,235,245,.18);
 
   /* lines */
-  --sep:       rgba(84,84,88,.60);
-  --sep-op:    rgba(84,84,88,.34);   /* for edges sitting over blur */
+  --sep:       rgba(84,155,205,.34);
+  --sep-op:    rgba(84,155,205,.22);   /* for edges sitting over blur */
   --hair:      .5px;
 
   /* system palette (iOS dark values) */
@@ -42,9 +42,9 @@
   --purple:#bf5af2; --mint:#63e6e2; --brown:#ac8e68; --grey:#8e8e93;
 
   /* accent (per-account, synced) */
-  --acc:  var(--green);
-  --acc-2:#248a3d;
-  --on-acc:#000000;
+  --acc:  var(--blue);
+  --acc-2:#0060df;
+  --on-acc:#ffffff;
   --acc-soft: color-mix(in srgb, var(--acc) 16%, transparent);
   --acc-line: color-mix(in srgb, var(--acc) 38%, transparent);
 
@@ -70,19 +70,19 @@
 }
 
 :root[data-theme="light"] {
-  --bg:        #f2f2f7;
-  --bg-el:     #f7f7fa;
+  --bg:        #f2f7fb;
+  --bg-el:     #f7fbfe;
   --surface:   #ffffff;
-  --surface-2: #ececef;
-  --surface-3: #e3e3e8;
+  --surface-2: #e7f0f7;
+  --surface-3: #dce9f2;
 
   --label:     #000000;
   --label-2:   rgba(60,60,67,.60);
   --label-3:   rgba(60,60,67,.30);
   --label-4:   rgba(60,60,67,.16);
 
-  --sep:       rgba(60,60,67,.29);
-  --sep-op:    rgba(60,60,67,.20);
+  --sep:       rgba(40,91,128,.24);
+  --sep-op:    rgba(40,91,128,.16);
 
   --blue:#007aff; --green:#34c759; --red:#ff3b30; --orange:#ff9500;
   --yellow:#ffcc00; --teal:#30b0c7; --indigo:#5856d6; --pink:#ff2d55;
@@ -120,7 +120,9 @@ html{
   -webkit-text-size-adjust:100%;
 }
 body{
-  background:var(--bg);color:var(--label);
+  background:
+    radial-gradient(circle at 50% -12rem,color-mix(in srgb,var(--blue) 15%,transparent),transparent 34rem),
+    var(--bg);color:var(--label);
   font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display','Segoe UI',Roboto,system-ui,sans-serif;
   font-size:17px;line-height:1.29;letter-spacing:-.01em;
   min-height:100vh;min-height:100dvh;overscroll-behavior-y:none;overflow-x:clip;
@@ -128,6 +130,7 @@ body{
   touch-action:manipulation;
   font-variant-numeric:tabular-nums;
 }
+:root[data-theme="light"] body{background:var(--bg)}
 button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;letter-spacing:inherit}
 input,select,textarea{font:inherit;color:var(--label);letter-spacing:inherit}
 img{max-width:100%}
@@ -180,6 +183,20 @@ body.no-tabbar.resting #app{padding-bottom:calc(96px + var(--sab))}
 .workout-end-spacer{height:0}
 @keyframes viewfade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 #app.vfade{animation:viewfade var(--med) var(--ease)}
+
+/* Brand artwork is deliberately used at only two scales: a generous welcome mark and a compact
+   app badge. The soft blue halo echoes the supplied icon without competing with screen content. */
+.brand-mark{
+  display:block;width:180px;height:180px;margin:0 auto 18px;border-radius:34px;
+  box-shadow:0 18px 56px -22px rgba(0,132,255,.72),0 0 0 var(--hair) rgba(64,200,224,.28);
+}
+.brand-mark.compact{width:46px;height:46px;margin:0;border-radius:12px;box-shadow:0 8px 24px -12px rgba(0,132,255,.9)}
+.brand-loader{padding-top:41vh;display:flex;justify-content:center}
+.brand-loader .brand-mark{animation:brand-pulse 1.5s ease-in-out infinite}
+@keyframes brand-pulse{50%{opacity:.62;transform:scale(.96)}}
+.home-heading{display:flex;align-items:center;gap:12px}
+.home-heading>div{min-width:0}
+.brand-kicker{color:var(--acc);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:2px}
 
 /* Connection indicator (components/SyncBanner.jsx): pinned under the status bar for as long as
    the app is not connected to a server. It carries the page's own ground and blur, like the
@@ -283,7 +300,7 @@ h4.sec{
 /* ----------------------------------------------------------------- card -- */
 .card{
   background:var(--surface);border-radius:var(--r-card);
-  padding:16px;margin-bottom:12px;
+  border:var(--hair) solid var(--sep-op);padding:16px;margin-bottom:12px;
 }
 .card .big{font-size:30px;font-weight:600;letter-spacing:-.026em;line-height:1.1}
 

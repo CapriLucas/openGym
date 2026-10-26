@@ -79,9 +79,9 @@ describe('the accent colour syncs per field like any other setting', () => {
       expect(m.accentCustom).toBe('#3366ff')
       expect(m.restSec).toBe(90)
     }
-    const desk2 = change(base, s => { s.accent = 'sky' }, 7000)
+    const desk2 = change(base, s => { s.accent = 'violet' }, 7000)
     for (const m of [mergeStates(phone, desk2), mergeStates(desk2, phone)]) {
-      expect(m.accent).toBe('sky')
+      expect(m.accent).toBe('violet')
       expect(m.accentCustom).toBe('#3366ff')   // kept for when you go back to it
     }
   })

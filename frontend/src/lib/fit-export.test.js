@@ -179,7 +179,7 @@ describe('a strength workout as FIT', () => {
     expect(id[3]).toBeGreaterThan(0)              // serial, stable per workout
     expect(id[4]).toBe(fitTime(T0))
     expect(of(d, MSG.fileCreator)[0][0]).toBe(104)
-    expect(of(d, MSG.deviceInfo)[0][27]).toBe('openGym')
+    expect(of(d, MSG.deviceInfo)[0][27]).toBe('Capri Gym')
     expect(decode(workoutFit(strength)).messages.find(m => m.global === MSG.fileId).f[3]).toBe(id[3])
   })
 
