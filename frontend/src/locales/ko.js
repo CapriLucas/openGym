@@ -1759,6 +1759,13 @@ export default {
   'A set left at 0 weight starts from that set’s weight last time.': '무게가 0인 세트는 지난번 같은 세트의 무게로 시작합니다.',
   // --- update a routine from a running workout ---
   'Update routine': '루틴 업데이트',
+  'Update routine?': '루틴을 업데이트할까요?',
+  'You changed this workout’s exercises or plan. Update the routine to match this session? Your workout is already saved either way.': '이번 운동의 종목이나 계획을 변경했습니다. 이 세션과 같도록 루틴을 업데이트할까요? 어떤 선택을 해도 운동 기록은 이미 저장되었습니다.',
+  'Keep routine as is': '현재 루틴 유지',
+  'Routine changed elsewhere': '다른 기기에서 루틴이 변경됨',
+  'Your workout was saved, but the routine changed after this session started and was not overwritten.': '운동은 저장되었지만 세션을 시작한 뒤 루틴이 변경되어 덮어쓰지 않았습니다.',
+  'A routine changed after this session started and will not be overwritten.': '세션을 시작한 뒤 루틴이 변경되어 덮어쓰지 않습니다.',
+  'Routine updated; another routine changed elsewhere and was not overwritten.': '루틴을 업데이트했습니다. 다른 루틴은 다른 기기에서 변경되어 덮어쓰지 않았습니다.',
   'Update “{0}”?': '“{0}” 루틴을 업데이트할까요?',
   'Routine updated': '루틴 업데이트됨',
   'per side': '한쪽당',

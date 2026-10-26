@@ -1759,6 +1759,13 @@ export default {
   'A set left at 0 weight starts from that set’s weight last time.': 'A 0 súlyú sorozat az előző alkalommal ugyanennél a sorozatnál használt súlyról indul.',
   // --- update a routine from a running workout ---
   'Update routine': 'Rutin frissítése',
+  'Update routine?': 'Frissíted a rutint?',
+  'You changed this workout’s exercises or plan. Update the routine to match this session? Your workout is already saved either way.': 'Módosítottad az edzés gyakorlatait vagy tervét. Frissíted a rutint, hogy megfeleljen ennek az alkalomnak? Az edzés mindenképpen már el van mentve.',
+  'Keep routine as is': 'Jelenlegi rutin megtartása',
+  'Routine changed elsewhere': 'A rutint máshol módosították',
+  'Your workout was saved, but the routine changed after this session started and was not overwritten.': 'Az edzés mentve lett, de a rutin az alkalom kezdete után megváltozott, ezért nem lett felülírva.',
+  'A routine changed after this session started and will not be overwritten.': 'Egy rutin az alkalom kezdete után megváltozott, ezért nem lesz felülírva.',
+  'Routine updated; another routine changed elsewhere and was not overwritten.': 'A rutin frissült; egy másik rutint máshol módosítottak, ezért nem lett felülírva.',
   'Update “{0}”?': 'Frissíted a(z) „{0}” rutint?',
   'Routine updated': 'Rutin frissítve',
   'per side': 'oldalanként',

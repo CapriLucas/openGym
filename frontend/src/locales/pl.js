@@ -1759,6 +1759,13 @@ export default {
   'A set left at 0 weight starts from that set’s weight last time.': 'Seria z ciężarem 0 zaczyna od ciężaru tej serii z poprzedniego razu.',
   // --- update a routine from a running workout ---
   'Update routine': 'Zaktualizuj plan',
+  'Update routine?': 'Zaktualizować plan?',
+  'You changed this workout’s exercises or plan. Update the routine to match this session? Your workout is already saved either way.': 'Zmieniono ćwiczenia lub plan tego treningu. Zaktualizować plan, aby odpowiadał tej sesji? Trening jest już zapisany niezależnie od wyboru.',
+  'Keep routine as is': 'Zachowaj obecny plan',
+  'Routine changed elsewhere': 'Plan został zmieniony gdzie indziej',
+  'Your workout was saved, but the routine changed after this session started and was not overwritten.': 'Trening został zapisany, ale plan zmienił się po rozpoczęciu sesji i nie został nadpisany.',
+  'A routine changed after this session started and will not be overwritten.': 'Plan zmienił się po rozpoczęciu sesji i nie zostanie nadpisany.',
+  'Routine updated; another routine changed elsewhere and was not overwritten.': 'Plan zaktualizowano; inny plan został zmieniony gdzie indziej i nie został nadpisany.',
   'Update “{0}”?': 'Zaktualizować plan „{0}”?',
   'Routine updated': 'Plan zaktualizowany',
   'per side': 'na stronę',

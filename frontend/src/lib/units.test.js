@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { convertWeight, convertStateUnit } from './units.js'
 import { workoutVolume } from './history.js'
 import { inventoryFor, withPlatePairs } from './plates.js'
+import { captureSessionRoutines, planSessionRoutineUpdates } from './session-routine-update.js'
 
 describe('convertWeight', () => {
   it('rounds lb to a half and kg to a quarter', () => {
@@ -72,6 +73,22 @@ describe('convertStateUnit', () => {
     // A workout that never had a cached volume does not grow one.
     expect(out.workouts[1]).not.toHaveProperty('vol')
     expect(state.workouts[0].vol).toBe(700)          // the input is not mutated
+  })
+  it('converts active routine baselines and entry sources without creating a false routine conflict', () => {
+    const routine = { id: 'A', name: 'Strength', ex: [{ id: '0025', sets: 2, reps: 5, weight: 50 }] }
+    const entry = {
+      id: '0025', rid: 'A', target: { id: '0025', sets: 2, reps: 5, weight: 55 },
+      planned: { sets: 2, reps: 5, weight: 50 }, sets: [{ w: 55, r: 5 }],
+    }
+    const captured = captureSessionRoutines([routine], [entry])
+    const state = { unit: 'kg', routines: [routine], active: { id: 'w', routineIds: ['A'], ...captured } }
+
+    const lb = convertStateUnit(state, 'lb')
+
+    expect(lb.active.routineBases[0].routine.ex[0].weight).toBe(110)
+    expect(lb.active.entries[0].routineSource.target.weight).toBe(121.5)
+    expect(lb.active.entries[0].routineSource.planned.weight).toBe(110)
+    expect(planSessionRoutineUpdates(lb.active, lb.routines)).toEqual({ changes: [], conflicts: [] })
   })
   // Body weight is weighed in and edited at 0.1, not loaded on a bar: rounding it to plate steps
   // moved 22 of 24 weigh-ins on a kg → lb → kg round trip (QA C15). The goal weight is one too.

@@ -66,6 +66,7 @@ import { workoutCardModel, layoutWorkoutCard, drawWorkoutCard, viewAspect, CARD_
 import { copyText } from './lib/clipboard.js'
 import { queueRemaining, pinState } from './lib/queue.js'
 import { DAY_NOTE_TAGS, DAY_NOTE_LABEL, DAY_NOTE_ICON, dayNoteOf, dayNoteLine, canNoteDay, withDayNote } from './lib/day-notes.js'
+import { captureAddedRoutine, captureSessionRoutines, planSessionRoutineUpdates, applySessionRoutineUpdates } from './lib/session-routine-update.js'
 
 const S = () => useStore.getState().S
 const update = (...a) => useStore.getState().update(...a)
@@ -2776,6 +2777,7 @@ export function startFlow(routineIds) {
 export function beginWorkout(routineIds, bw) {
   const st = S()
   const { entries, routineIds: rids, routines } = buildCombinedEntries(st, routineIds)
+  const captured = captureSessionRoutines(routines, entries)
   update(s => {
     s.active = {
       id: uid(), d: todayISO(), start: Date.now(),
@@ -2783,7 +2785,8 @@ export function beginWorkout(routineIds, bw) {
       // exercise came from. No top-level `excludeFromProgression` — per-entry `noProg` does it.
       routineIds: rids,
       name: routines.length ? deriveSessionName(routines.map(r => r.name)) : t('Freestyle'),
-      bw: bw || null, cur: 0, entries,
+      bw: bw || null, cur: 0, entries: captured.entries,
+      routineBases: captured.routineBases,
       // Snapshot the layout at start so the header ⋮ can change it for this session only —
       // changing the saved default (Settings → Workout view) mid-session leaves it alone.
       workoutView: st.workoutView || 'cards',
@@ -2940,7 +2943,8 @@ function AddRoutineToSession({ close }) {
       if (!s.active) return
       // A session kept out of progression as a whole (the header ⋮) keeps the routine's
       // exercises out too, the same as an exercise added on its own.
-      s.active.entries.push(...entries.map(e => joinSessionNoProg(s.active, e)))
+      const tagged = captureAddedRoutine(s.active, r, entries)
+      s.active.entries.push(...tagged.map(e => joinSessionNoProg(s.active, e)))
       s.active.routineIds = [...[].concat(s.active.routineIds || []), r.id]
       if (!s.active.customName) {
         s.active.name = deriveSessionName(s.active.routineIds.map(id => s.routines.find(x => x.id === id)?.name).filter(Boolean))
@@ -3361,6 +3365,49 @@ export function finishWorkoutSheet({ onDiscard } = {}) {
     ],
   })
 }
+
+function RoutineConflictDialog({ onDone, close }) {
+  return <div style={{ textAlign: 'center', padding: '4px 0' }}>
+    <h3 style={{ marginBottom: 8 }}>{t('Routine changed elsewhere')}</h3>
+    <div className="muted" style={{ marginBottom: 18, lineHeight: 1.5 }}>
+      {t('Your workout was saved, but the routine changed after this session started and was not overwritten.')}
+    </div>
+    <Button variant="primary" onClick={() => { close(); onDone() }}>{t('Continue')}</Button>
+  </div>
+}
+
+// The workout is already in history when this runs. On iOS the PWA can be suspended while this
+// choice is visible, so doing nothing is deliberately safe: the workout remains saved and the
+// routine remains unchanged.
+function offerSessionRoutineUpdate(active, onDone) {
+  const proposal = planSessionRoutineUpdates(active, S().routines)
+  if (!proposal.changes.length) {
+    if (!proposal.conflicts.length) { onDone(); return }
+    ui().openSheet(close => <RoutineConflictDialog onDone={onDone} close={close} />, { kind: 'center', locked: true })
+    return
+  }
+  confirmSheet({
+    title: t('Update routine?'),
+    message: <>
+      <span>{t('You changed this workout’s exercises or plan. Update the routine to match this session? Your workout is already saved either way.')}</span>
+      {proposal.conflicts.length > 0 && <><br /><span>{t('A routine changed after this session started and will not be overwritten.')}</span></>}
+    </>,
+    confirmText: t('Update routine'),
+    cancelText: t('Keep routine as is'),
+    locked: true,
+    onConfirm: () => {
+      let applied
+      update(state => { applied = applySessionRoutineUpdates(state, active) })
+      useStore.getState().autoBackupNow()
+      if (applied.conflicts.length && applied.changes.length) toast(t('Routine updated; another routine changed elsewhere and was not overwritten.'))
+      else if (applied.conflicts.length) toast(t('Routine changed elsewhere'))
+      else toast(t('Routine updated'))
+      onDone()
+    },
+    onCancel: onDone,
+  })
+}
+
 function doFinishWorkout() {
   const st = S()
   const A = st.active
@@ -3418,5 +3465,6 @@ function doFinishWorkout() {
   // into s.active, which is gone. What it held is not logged, like any set left unchecked.
   useUI.getState().stopWork()
   beep(snd(), 880, 0.15); beep(snd(), 1100, 0.15, 0.18); beep(snd(), 1320, 0.3, 0.36)
-  ui().openSheet(close => <FinishSummary w={shown} prs={prs} e1prs={e1prs} close={close} />, { kind: 'center', locked: true })
+  const showSummary = () => ui().openSheet(close => <FinishSummary w={shown} prs={prs} e1prs={e1prs} close={close} />, { kind: 'center', locked: true })
+  offerSessionRoutineUpdate(A, showSummary)
 }

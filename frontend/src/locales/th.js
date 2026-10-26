@@ -1767,6 +1767,13 @@ export default {
   'A set left at 0 weight starts from that set’s weight last time.': 'เซ็ตที่น้ำหนัก 0 จะเริ่มจากน้ำหนักของเซ็ตเดียวกันครั้งก่อน',
   // --- update a routine from a running workout ---
   'Update routine': 'อัปเดตรูทีน',
+  'Update routine?': 'อัปเดตรูทีนไหม?',
+  'You changed this workout’s exercises or plan. Update the routine to match this session? Your workout is already saved either way.': 'คุณเปลี่ยนท่าหรือแผนของการออกกำลังกายนี้ ต้องการอัปเดตรูทีนให้ตรงกับเซสชันนี้ไหม? ไม่ว่าจะเลือกอะไร การออกกำลังกายก็ถูกบันทึกแล้ว',
+  'Keep routine as is': 'เก็บรูทีนปัจจุบันไว้',
+  'Routine changed elsewhere': 'รูทีนถูกเปลี่ยนจากที่อื่น',
+  'Your workout was saved, but the routine changed after this session started and was not overwritten.': 'บันทึกการออกกำลังกายแล้ว แต่รูทีนถูกเปลี่ยนหลังเริ่มเซสชัน จึงไม่ได้เขียนทับ',
+  'A routine changed after this session started and will not be overwritten.': 'มีรูทีนถูกเปลี่ยนหลังเริ่มเซสชันและจะไม่ถูกเขียนทับ',
+  'Routine updated; another routine changed elsewhere and was not overwritten.': 'อัปเดตรูทีนแล้ว ส่วนอีกรูทีนถูกเปลี่ยนจากที่อื่นจึงไม่ได้เขียนทับ',
   'Update “{0}”?': 'อัปเดตรูทีน “{0}” ไหม?',
   'Routine updated': 'อัปเดตรูทีนแล้ว',
   'per side': 'ต่อข้าง',

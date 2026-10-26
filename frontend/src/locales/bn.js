@@ -1800,6 +1800,13 @@ export default {
   'A set left at 0 rest uses the exercise’s rest.': 'যে সেটের বিশ্রাম 0 রাখা হয়, সেটি ব্যায়ামের বিশ্রাম ব্যবহার করে।',
   // --- update a routine from a running workout ---
   'Update routine': 'রুটিন আপডেট করুন',
+  'Update routine?': 'রুটিন আপডেট করবেন?',
+  'You changed this workout’s exercises or plan. Update the routine to match this session? Your workout is already saved either way.': 'আপনি এই ওয়ার্কআউটের ব্যায়াম বা পরিকল্পনা বদলেছেন। এই সেশনের সঙ্গে মিলিয়ে রুটিন আপডেট করবেন? যেকোনো ক্ষেত্রেই ওয়ার্কআউটটি ইতিমধ্যে সংরক্ষিত।',
+  'Keep routine as is': 'বর্তমান রুটিন রাখুন',
+  'Routine changed elsewhere': 'রুটিনটি অন্যত্র পরিবর্তিত হয়েছে',
+  'Your workout was saved, but the routine changed after this session started and was not overwritten.': 'আপনার ওয়ার্কআউট সংরক্ষিত হয়েছে, কিন্তু সেশন শুরুর পরে রুটিন বদলানোয় সেটি ওভাররাইট করা হয়নি।',
+  'A routine changed after this session started and will not be overwritten.': 'সেশন শুরুর পরে একটি রুটিন বদলেছে এবং সেটি ওভাররাইট করা হবে না।',
+  'Routine updated; another routine changed elsewhere and was not overwritten.': 'রুটিন আপডেট হয়েছে; অন্য একটি রুটিন অন্যত্র বদলানো হয়েছে এবং ওভাররাইট করা হয়নি।',
   'Update “{0}”?': '“{0}” আপডেট করবেন?',
   'Routine updated': 'রুটিন আপডেট হয়েছে',
   'per side': 'প্রতি পাশে',
