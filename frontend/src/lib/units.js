@@ -72,6 +72,11 @@ const convEntry = (e, from, to) => {
     ...(e.target ? { target: convTarget(e.target, from, to) } : {}),
     // The plan the entry was built from (lib/session-start.js) carries the routine's weight too.
     ...(e.planned ? { planned: convTarget(e.planned, from, to) } : {}),
+    ...(e.routineSource ? { routineSource: {
+      ...e.routineSource,
+      target: convTarget(e.routineSource.target, from, to),
+      planned: convTarget(e.routineSource.planned, from, to),
+    } } : {}),
     ...(Array.isArray(e.sets) ? { sets: e.sets.map(s => convSet(s, from, to)) } : {}),
   }
 }
@@ -88,6 +93,10 @@ export function convertStateUnit(S, to) {
   // volume is re-added from the converted sets, so it agrees with the set list to the number.
   const convSession = s => {
     const out = { ...s, entries: (s.entries || []).map(e => convEntry(e, from, to)) }
+    if (Array.isArray(s.routineBases)) out.routineBases = s.routineBases.map(base => ({
+      ...base,
+      routine: base?.routine ? { ...base.routine, ex: (base.routine.ex || []).map(cfg => convTarget(cfg, from, to)) } : base?.routine,
+    }))
     if (out.bw != null) out.bw = bw(out.bw)
     if (Number.isFinite(out.vol)) out.vol = workoutVolume({ entries: out.entries.filter(e => Array.isArray(e?.sets)) })
     return out

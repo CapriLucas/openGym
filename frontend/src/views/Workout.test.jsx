@@ -3384,6 +3384,22 @@ describe('the workout screen chrome (v1.3.11)', () => {
     expect(mocks.exercisePicker).toHaveBeenCalledOnce()
   })
 
+  it('keeps the routine owner when its last exercise is removed and a new one is added', async () => {
+    const routine = { id: 'A', name: 'Routine A', ex: [{ id: 'plain-bench', sets: 1, reps: 5, weight: 60 }] }
+    await mount([exercise('plain-bench', [false], { rid: 'A' })], 0, {
+      routines: [routine], active: { routineIds: ['A'] },
+    })
+    await openMore()
+    item('Remove exercise').onClick()
+    await act(async () => { mocks.confirmSheet.mock.calls.at(-1)[0].onConfirm() })
+    await rerender()
+
+    await addExerciseThroughSheets({ id: 'replacement' }, { mode: 'reps', sets: 1, reps: 8, weight: 20 })
+
+    expect(mocks.S.active.entries).toHaveLength(1)
+    expect(mocks.S.active.entries[0]).toMatchObject({ id: 'replacement', rid: 'A' })
+  })
+
   it('groups the exercise menu: today, look it up, settings, order, and Remove on its own', async () => {
     await mount([exercise('plain-bench', [false]), exercise('plain-row', [false])])
     await openMore()

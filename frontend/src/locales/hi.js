@@ -1759,6 +1759,13 @@ export default {
   'A set left at 0 weight starts from that set’s weight last time.': '0 वज़न वाला सेट पिछली बार उसी सेट के वज़न से शुरू होता है।',
   // --- update a routine from a running workout ---
   'Update routine': 'रूटीन अपडेट करें',
+  'Update routine?': 'रूटीन अपडेट करें?',
+  'You changed this workout’s exercises or plan. Update the routine to match this session? Your workout is already saved either way.': 'आपने इस वर्कआउट के व्यायाम या योजना बदली है। क्या रूटीन को इस सेशन के अनुसार अपडेट करें? आपका वर्कआउट हर स्थिति में पहले ही सेव हो चुका है।',
+  'Keep routine as is': 'मौजूदा रूटीन रखें',
+  'Routine changed elsewhere': 'रूटीन किसी और जगह बदली गई',
+  'Your workout was saved, but the routine changed after this session started and was not overwritten.': 'आपका वर्कआउट सेव हो गया, लेकिन सेशन शुरू होने के बाद रूटीन बदल गई थी, इसलिए उसे ओवरराइट नहीं किया गया।',
+  'A routine changed after this session started and will not be overwritten.': 'सेशन शुरू होने के बाद एक रूटीन बदल गई और उसे ओवरराइट नहीं किया जाएगा।',
+  'Routine updated; another routine changed elsewhere and was not overwritten.': 'रूटीन अपडेट हो गई; दूसरी रूटीन कहीं और बदली गई थी और उसे ओवरराइट नहीं किया गया।',
   'Update “{0}”?': 'रूटीन “{0}” अपडेट करें?',
   'Routine updated': 'रूटीन अपडेट हो गया',
   'per side': 'प्रति तरफ़',

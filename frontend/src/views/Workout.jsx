@@ -46,6 +46,7 @@ import { nextOpenSet, workoutKeyAction } from '../lib/workout-keys.js'
 import { MUSCLE_NAME } from '../lib/muscles.js'
 import FocusView from './FocusView.jsx'
 import { withMeaning, historyAs, dbLoadFor, entryDbLoad, bellsIn, ownedWeightsFor, stepOwned } from '../lib/dumbbells.js'
+import { routineIdForSessionAdd } from '../lib/session-routine-update.js'
 
 // How long after a key starts a hold the same key is not yet its "Done" (#133). A USB button
 // that bounces, or a double press, sends two presses a moment apart: the first starts the hold,
@@ -1377,7 +1378,7 @@ function ActiveWorkout() {
     // hand (its ⋯ menu) is that exercise's own choice for today and is not passed on; a session
     // kept out as a whole (the header ⋮) takes the new one with it (joinSessionNoProg).
     const curEntry = A.entries[A.cur]
-    const curRid = curEntry?.rid
+    const curRid = routineIdForSessionAdd(A)
     const routine = curRid ? S.routines.find(r => r.id === curRid) : null
     const freestyle = !routine
     const noProg = !freestyle && builtOutOfProgression(curEntry, routine)

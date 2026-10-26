@@ -1759,6 +1759,13 @@ export default {
   'A set left at 0 weight starts from that set’s weight last time.': 'Ağırlığı 0 olan set, aynı setin geçen seferki ağırlığıyla başlar.',
   // --- update a routine from a running workout ---
   'Update routine': 'Rutini güncelle',
+  'Update routine?': 'Rutin güncellensin mi?',
+  'You changed this workout’s exercises or plan. Update the routine to match this session? Your workout is already saved either way.': 'Bu antrenmanın egzersizlerini veya planını değiştirdin. Rutin bu seansa uyacak şekilde güncellensin mi? Seçiminden bağımsız olarak antrenmanın zaten kaydedildi.',
+  'Keep routine as is': 'Mevcut rutini koru',
+  'Routine changed elsewhere': 'Rutin başka bir yerde değiştirildi',
+  'Your workout was saved, but the routine changed after this session started and was not overwritten.': 'Antrenmanın kaydedildi, ancak rutin bu seans başladıktan sonra değiştiği için üzerine yazılmadı.',
+  'A routine changed after this session started and will not be overwritten.': 'Bir rutin bu seans başladıktan sonra değişti ve üzerine yazılmayacak.',
+  'Routine updated; another routine changed elsewhere and was not overwritten.': 'Rutin güncellendi; başka bir rutin başka bir yerde değiştirildi ve üzerine yazılmadı.',
   'Update “{0}”?': '“{0}” rutini güncellensin mi?',
   'Routine updated': 'Rutin güncellendi',
   'per side': 'taraf başına',

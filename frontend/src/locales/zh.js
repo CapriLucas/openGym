@@ -1759,6 +1759,13 @@ export default {
   'A set left at 0 weight starts from that set’s weight last time.': '重量为 0 的组从上次同一组的重量开始。',
   // --- update a routine from a running workout ---
   'Update routine': '更新训练日',
+  'Update routine?': '更新训练计划？',
+  'You changed this workout’s exercises or plan. Update the routine to match this session? Your workout is already saved either way.': '你更改了本次训练的动作或计划。是否更新训练计划，使其与本次训练一致？无论如何，本次训练都已保存。',
+  'Keep routine as is': '保留当前训练计划',
+  'Routine changed elsewhere': '训练计划已在其他设备上更改',
+  'Your workout was saved, but the routine changed after this session started and was not overwritten.': '训练记录已保存，但训练计划在本次训练开始后发生了更改，因此没有被覆盖。',
+  'A routine changed after this session started and will not be overwritten.': '有训练计划在本次训练开始后发生了更改，因此不会被覆盖。',
+  'Routine updated; another routine changed elsewhere and was not overwritten.': '训练计划已更新；另一个训练计划已在其他设备上更改，因此未被覆盖。',
   'Update “{0}”?': '更新训练日「{0}」？',
   'Routine updated': '训练日已更新',
   'per side': '每侧',

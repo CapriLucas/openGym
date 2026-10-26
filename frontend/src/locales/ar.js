@@ -1811,6 +1811,13 @@ export default {
   'A set left at 0 weight starts from that set’s weight last time.': 'المجموعة ذات الوزن 0 تبدأ من وزن المجموعة نفسها في المرة السابقة.',
   // --- update a routine from a running workout ---
   'Update routine': 'تحديث الروتين',
+  'Update routine?': 'هل تريد تحديث الروتين؟',
+  'You changed this workout’s exercises or plan. Update the routine to match this session? Your workout is already saved either way.': 'لقد غيّرت تمارين هذا التدريب أو خطته. هل تريد تحديث الروتين ليتطابق مع هذه الجلسة؟ تم حفظ تدريبك بالفعل في كلتا الحالتين.',
+  'Keep routine as is': 'إبقاء الروتين كما هو',
+  'Routine changed elsewhere': 'تم تغيير الروتين على جهاز آخر',
+  'Your workout was saved, but the routine changed after this session started and was not overwritten.': 'تم حفظ تدريبك، لكن الروتين تغيّر بعد بدء هذه الجلسة ولم تتم الكتابة فوقه.',
+  'A routine changed after this session started and will not be overwritten.': 'تغيّر روتين بعد بدء هذه الجلسة ولن تتم الكتابة فوقه.',
+  'Routine updated; another routine changed elsewhere and was not overwritten.': 'تم تحديث الروتين؛ تغيّر روتين آخر على جهاز آخر ولم تتم الكتابة فوقه.',
   'Update “{0}”?': 'تحديث «{0}»؟',
   'Routine updated': 'تم تحديث الروتين',
   'per side': 'لكل جانب',

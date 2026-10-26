@@ -1763,6 +1763,13 @@ export default {
   'A set left at 0 weight starts from that set’s weight last time.': 'Подход с весом 0 начинается с веса этого подхода в прошлый раз.',
   // --- update a routine from a running workout ---
   'Update routine': 'Обновить программу',
+  'Update routine?': 'Обновить программу?',
+  'You changed this workout’s exercises or plan. Update the routine to match this session? Your workout is already saved either way.': 'Вы изменили упражнения или план этой тренировки. Обновить программу по этой сессии? Тренировка уже сохранена независимо от выбора.',
+  'Keep routine as is': 'Оставить программу без изменений',
+  'Routine changed elsewhere': 'Программа изменена на другом устройстве',
+  'Your workout was saved, but the routine changed after this session started and was not overwritten.': 'Тренировка сохранена, но программа изменилась после начала сессии и не была перезаписана.',
+  'A routine changed after this session started and will not be overwritten.': 'Программа изменилась после начала сессии и не будет перезаписана.',
+  'Routine updated; another routine changed elsewhere and was not overwritten.': 'Программа обновлена; другая программа была изменена на другом устройстве и не перезаписана.',
   'Update “{0}”?': 'Обновить программу «{0}»?',
   'Routine updated': 'Программа обновлена',
   'per side': 'на сторону',
